@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 class NamedEnumMeta(EnumMeta):
     def __iter__(cls):
         return (
-            (cls._member_map_[name].value, _(cls._member_map_[name]))
+            (cls._member_map_[name].value, _(cls._member_map_[name].value))
             for name in cls._member_names_
         )
 
