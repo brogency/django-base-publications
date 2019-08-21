@@ -12,13 +12,10 @@ from django.db.models import (
     CASCADE,
 )
 from django.utils.translation import gettext_lazy as _
-from django.contrib.sites.models import Site
 from django.conf import settings
 from autoslug.fields import AutoSlugField
 from taggit.managers import TaggableManager
 
-
-from ..utils import get_item_absolute_site_url
 from .managers import BasePublicationManager
 from .statuses import Statuses
 
