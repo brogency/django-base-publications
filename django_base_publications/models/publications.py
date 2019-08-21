@@ -12,6 +12,7 @@ from django.db.models import (
     CASCADE,
 )
 from django.utils.translation import gettext_lazy as _
+from django.contrib.sites.models import Site
 from django.conf import settings
 from autoslug.fields import AutoSlugField
 from taggit.managers import TaggableManager
@@ -82,12 +83,12 @@ class BasePublication(Model):
     objects = BasePublicationManager()
 
     @property
-    def canonical_url(self):
-        return get_item_absolute_site_url(self.get_absolute_url())
-
-    @property
     def is_published(self):
         return self.status == Statuses.PUBLISHED.value
+
+    @property
+    def canonical_url(self):
+        return self.get_absolute_url()
 
     def get_absolute_url(self):
         raise NotImplementedError('get_absolute_url not implemented')

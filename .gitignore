@@ -2,3 +2,4 @@
 .pytest_cache
 django_base_publications/__pycache__/
 tests/__pycache__/
+dist
