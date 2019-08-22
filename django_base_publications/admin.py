@@ -1,11 +1,9 @@
 from urllib.parse import urlunsplit
-from django.contrib import admin
-from django.contrib.sites.models import Site
+from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext_lazy as _
-from django.conf import settings
 
 
-class PublicationAdmin(admin.ModelAdmin):
+class PublicationAdmin(ModelAdmin):
     list_display = (
         'title',
         'status',
@@ -16,7 +14,6 @@ class PublicationAdmin(admin.ModelAdmin):
         'created_date',
         'last_modified_date',
         'guest_link',
-        'views_count',
     )
 
     list_filter = [
@@ -52,8 +49,7 @@ class PublicationAdmin(admin.ModelAdmin):
 
     def guest_link(self, obj):
         if obj.pk:
-            site = Site.objects.get(id=settings.SITE_ID)
-            return urlunsplit((settings.SITE_SCHEME, site.domain, obj.absolute_url, f'token={obj.token}', ''))
+            return urlunsplit((obj.absolute_url, f'token={obj.token}', ''))
         return ""
 
     guest_link.short_description = _('Slug')
