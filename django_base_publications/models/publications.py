@@ -14,7 +14,6 @@ from django.db.models import (
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from autoslug.fields import AutoSlugField
-from taggit.managers import TaggableManager
 
 from .managers import BasePublicationManager
 from .statuses import Statuses
@@ -73,10 +72,9 @@ class BasePublication(Model):
         default=uuid.uuid4,
         blank=True,
         editable=False,
-        verbose_name='Токен'
+        verbose_name=_('Token')
     )
 
-    tags = TaggableManager()
     objects = BasePublicationManager()
 
     @property
