@@ -9,8 +9,9 @@ from .statuses import Statuses
 class BasePublicationManager(Manager):
     def get_published(self):
         return self.filter(
-            is_hidden=False, status=Statuses.PUBLISHED.name,
-            publication_date__lte=datetime.now()
+            is_hidden=False,
+            status=Statuses.PUBLISHED.value,
+            publication_date__lte=datetime.now(),
         )
 
     def get_random(self, exclude_ids=None, category_slug=None, limit=3):
