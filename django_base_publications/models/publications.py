@@ -29,6 +29,7 @@ class BasePublication(Model):
         blank=True,
         unique=True,
         verbose_name=_('Slug'),
+        populate_from='title',
     )
     description = TextField(
         verbose_name=_('Description'),
